@@ -1,7 +1,7 @@
 export const PlanetDetails = ({ currentPlanet, togglePlanetDetails, planetDetailsOpen }) => {
       return (
             <div
-                  className={`fixed rounded-t-3xl border-b-0 border text-foreground bg-background min-h-[50%] left-0 transition-all ease-snappy  p-8 bottom-0 w-full ${
+                  className={`fixed rounded-t-3xl border-b-0 border text-foreground bg-background min-h-[50%] z-40 left-0 transition-all ease-snappy  p-8 bottom-0 w-full ${
                         planetDetailsOpen
                               ? "translate-y-[0%]"
                               : "translate-y-[100%]"

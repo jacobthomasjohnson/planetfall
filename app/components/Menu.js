@@ -1,4 +1,12 @@
+import useGameStore from "../gameStore";
+
 export const Menu = ({ menuTop, menuOpen, toggleMenu }) => {
+      const currentPage = useGameStore((state) => state.currentPage);
+      const changePage = useGameStore((state) => state.changePage);
+      const onMenuLinkClick = (page) => {
+            toggleMenu();
+            changePage(page);
+      }
       return (
             <div
                   style={{
@@ -8,19 +16,19 @@ export const Menu = ({ menuTop, menuOpen, toggleMenu }) => {
                         menuOpen ? "-translate-y-0" : "-translate-y-full"
                   }`}
             >
-                  <div onClick={toggleMenu} className="menu-item">
+                  <div onClick={() => onMenuLinkClick("operations")} className="menu-item">
                         &#9658; OPERATIONS
                   </div>
-                  <div onClick={toggleMenu} className="menu-item">
+                  <div onClick={() => onMenuLinkClick("population")} className="menu-item">
                         &#9658; POPULATION
                   </div>
-                  <div onClick={toggleMenu} className="menu-item">
+                  <div onClick={() => onMenuLinkClick("mining")} className="menu-item">
                         &#9658; MINING
                   </div>
-                  <div onClick={toggleMenu} className="menu-item">
+                  <div onClick={() => onMenuLinkClick("foodgathering")} className="menu-item">
                         &#9658; FOOD GATHERING
                   </div>
-                  <div onClick={toggleMenu} className="menu-item">
+                  <div onClick={() => onMenuLinkClick("travel")} className="menu-item">
                         &#9658; TRAVEL
                   </div>
             </div>

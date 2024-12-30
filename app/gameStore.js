@@ -8,19 +8,26 @@ const useGameStore = create((set, get) => ({
     level: 1,
     currentPlanet: locations[1],
     usedIds: [],
+    currentPage: "game",
 
     logs: [],
 
     addLog: (text) => {
-      set((state) => {
+        set((state) => {
+            return {
+                ...state,
+                logs: [...state.logs, text],
+            };
+        });
+    },
+
+    changePage: (page) => {
+        set((state) => {
             return {
                   ...state,
-                  logs: [
-                        ...state.logs,
-                        text,
-                  ]
-            }
-      })
+                  currentPage: `${page}`,
+            };
+        });
     },
 
     generateUniqueID: () => {

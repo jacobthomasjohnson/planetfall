@@ -1,12 +1,18 @@
 import Image from "next/image";
+import useGameStore from "../gameStore";
 
-export const Header = ({ ref, toggle, menuOpen }) => {
+export const Header = ({ ref, toggle, menuOpen, closeOtherMenus }) => {
+      const changePage = useGameStore((state) => state.changePage);
+      const returnHome = () => {
+            closeOtherMenus();
+            changePage("game");
+      }
       return (
             <div
                   ref={ref}
                   className="flex relative bg-background z-50 p-8 left-0 w-full justify-between"
             >
-                  <div className="relative">PLANETFALL</div>
+                  <div onClick={returnHome} className="relative">PLANETFALL</div>
                   <Image
                         onClick={toggle}
                         className={`invert hover:cursor-pointer ${menuOpen ? "hidden" : "visible"}`}
