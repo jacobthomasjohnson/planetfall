@@ -4,6 +4,7 @@
 
 * {
       /* outline: 1px solid brown; */
+      user-select: none;
 }
 
 :root {

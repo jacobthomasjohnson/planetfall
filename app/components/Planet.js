@@ -3,6 +3,7 @@ import useGameStore from "../gameStore";
 
 export const Planet = ({ planetId }) => {
       const locations = useGameStore((state) => state.locations);
+      const addLog = useGameStore((state) => state.addLog);
 
       const chanceOfEvent = 10; // 10% chance of event happening.
 
@@ -62,6 +63,7 @@ export const Planet = ({ planetId }) => {
                   uniqueAnimDiv.remove();
             }, 500);
             console.log(eventHappens());
+            addLog(eventHappens())
       };
 
       if (!currentPlanet) {
