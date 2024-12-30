@@ -1,101 +1,162 @@
+"use client";
+
+import { useRef, useState } from "react";
+import useGameStore from "./gameStore";
 import Image from "next/image";
 
-export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.js
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+export default function Game() {
+    const locations = useGameStore((state) => state.locations);
+    const currentPlanet = useGameStore((state) => state.currentPlanet);
+    const headerRef = useRef(null);
+    const [headerHeight, setHeaderHeight] = useState(0);
+    const [planetDetailsOpen, setPlanetDetailsOpen] = useState(false);
+    const [menuOpen, setMenuOpen] = useState(false);
+    const menuTop = headerRef.current ? headerRef.current.getBoundingClientRect().bottom + "px" : 0;
+    const togglePlanetDetails = () => {
+        closeOtherMenus();
+        setPlanetDetailsOpen(!planetDetailsOpen);
+    };
+    const toggleMenu = () => {
+        closeOtherMenus();
+        setMenuOpen(!menuOpen);
+    };
+    const closeOtherMenus = () => {
+        if (planetDetailsOpen) {
+            setPlanetDetailsOpen(false);
+        }
+        if (menuOpen) {
+            setMenuOpen(false);
+        }
+    };
+    console.log(locations);
+    return (
+        <div className="h-full">
+            <div className="flex flex-col">
+                <div
+                    ref={headerRef}
+                    className="flex relative bg-background z-50 p-8 left-0 w-full justify-between"
+                >
+                    <div>PLANETFALL</div>
+                    <Image
+                        onClick={toggleMenu}
+                        className="invert"
+                        src="/menu.svg"
+                        width={15}
+                        height={15}
+                        alt="Menu"
+                    />
+                </div>
+                <div
+                    style={{
+                        top:
+                            menuTop
+                    }}
+                    className={`fixed p-8 transition ease-snappy z-40 left-0 w-full min-h-[50%] bg-dusty ${
+                        menuOpen ? "-translate-y-0" : "-translate-y-full"
+                    }`}
+                >
+                    Menu
+                </div>
+                <div className="flex flex-col px-8">
+                    <div className="flex justify-between detail-stat">
+                        <div>SCRAPS</div>
+                        <div>10000</div>
+                    </div>
+                    <div className="flex justify-between detail-stat">
+                        <div>CORES</div>
+                        <div>28</div>
+                    </div>
+                    <div className="flex justify-between detail-stat">
+                        <div>ENERGY</div>
+                        <div>277</div>
+                    </div>
+                </div>
+                <div className="flex min-h-[50vh] w-full items-center justify-center">
+                    <div className="w-[100px] h-[100px] border border-teal rounded-full"></div>
+                </div>
+            </div>
+            <div className="flex flex-col items-center fixed bottom-0 w-full left-0">
+                <div className="p-8 flex gap-2">
+                    <button className="p-4 border rounded-xl">MINING</button>
+                    <button className="p-4 border rounded-xl">GATHERING</button>
+                    <button className="p-4 border rounded-xl">TRAVEL</button>
+                </div>
+                <div className="flex">
+                    <div className="p-8">Current: {currentPlanet.name}</div>
+                    <div className="p-8">
+                        <button
+                            onClick={togglePlanetDetails}
+                            className="p-4 -m-4 border rounded-xl"
+                        >
+                            PLANET DETAILS
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div
+                className={`fixed rounded-t-3xl border-b-0 border text-foreground bg-background min-h-[50%] left-0 transition-all ease-snappy  p-8 bottom-0 w-full ${
+                    planetDetailsOpen
+                        ? "translate-y-[0%]"
+                        : "translate-y-[100%]"
+                }`}
+            >
+                <div className="flex justify-between items-center">
+                    <div>{currentPlanet.name}</div>
+                    <div className="text-lg p-4 -m-4 hover:cursor-pointer">
+                        <button onClick={togglePlanetDetails}>&#x2A09;</button>
+                    </div>
+                </div>
+                <div className="flex my-6 flex-col justify-between">
+                    <div className="flex justify-between detail-stat">
+                        <div>Average Temperature</div>
+                        <div>{currentPlanet.averageTemp}°F</div>
+                    </div>
+                    <div className="flex justify-between detail-stat">
+                        <div>Food Availability</div>
+                        <div>{currentPlanet.foodAvailability}%</div>
+                    </div>
+                    <div className="flex justify-between detail-stat">
+                        <div>Food Quality</div>
+                        <div>{currentPlanet.foodQuality}%</div>
+                    </div>
+                    <div className="flex justify-between detail-stat">
+                        <div>Gravity</div>
+                        <div>{currentPlanet.gravity}</div>
+                    </div>
+                    <div className="flex justify-between detail-stat">
+                        <div>Atmospheric Toxicity</div>
+                        <div>{currentPlanet.atmosphereToxicity}%</div>
+                    </div>
+                    <div className="flex justify-between detail-stat">
+                        <div>Water Availability</div>
+                        <div>{currentPlanet.waterAvailability}%</div>
+                    </div>
+                    <div className="flex justify-between detail-stat">
+                        <div>Radiation Level</div>
+                        <div>{currentPlanet.radiationLevel}%</div>
+                    </div>
+                    <div className="flex justify-between detail-stat">
+                        <div>Mineral Richness</div>
+                        <div>{currentPlanet.mineralRichness}%</div>
+                    </div>
+                    <div className="flex justify-between detail-stat">
+                        <div>Soil Quality</div>
+                        <div>{currentPlanet.soilQuality}%</div>
+                    </div>
+                    <div className="flex justify-between detail-stat">
+                        <div>Hostile Lifeforms</div>
+                        <div>{currentPlanet.hostileLifeforms}%</div>
+                    </div>
+                    <div className="flex justify-between detail-stat">
+                        <div>Population Capacity</div>
+                        <div>{currentPlanet.populationCapacity}%</div>
+                    </div>
+                </div>
+            </div>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+            {/* {locations.map((location) => (
+                <div key={location.id}>{location.name}</div>
+            ))} */}
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+    );
 }
