@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 import useGameStore from "./gameStore";
 import Image from "next/image";
+import Planet from "./components/Planet";
 
 export default function Game() {
     const locations = useGameStore((state) => state.locations);
@@ -55,10 +56,11 @@ export default function Game() {
                         menuOpen ? "-translate-y-0" : "-translate-y-full"
                     }`}
                 >
-                    <div className="p-8">&#9658; OPERATIONS</div>
-                    <div className="p-8">&#9658; POPULATION</div>
-                    <div className="p-8">&#9658; MINING</div>
-                    <div className="p-8">&#9658; TRAVEL</div>
+                    <div onClick={toggleMenu} className="p-8">&#9658; OPERATIONS</div>
+                    <div onClick={toggleMenu} className="p-8">&#9658; POPULATION</div>
+                    <div onClick={toggleMenu} className="p-8">&#9658; MINING</div>
+                    <div onClick={toggleMenu} className="p-8">&#9658; FOOD GATHERING</div>
+                    <div onClick={toggleMenu} className="p-8">&#9658; TRAVEL</div>
                 </div>
                 <div className="flex flex-col px-8">
                     <div className="flex justify-between detail-stat">
@@ -75,16 +77,11 @@ export default function Game() {
                     </div>
                 </div>
                 <div className="flex min-h-[50vh] w-full items-center justify-center">
-                    <div className="w-[100px] h-[100px] border border-teal rounded-full"></div>
+                    <Planet planetId={currentPlanet.id} />
                 </div>
             </div>
-            <div className="flex flex-col items-center fixed bottom-0 w-full left-0">
-                <div className="p-8 flex gap-2">
-                    {/* <button className="p-4 border rounded-xl">MINING</button>
-                    <button className="p-4 border rounded-xl">GATHERING</button>
-                    <button className="p-4 border rounded-xl">TRAVEL</button> */}
-                </div>
-                <div className="flex">
+            <div className="flex flex-col fixed bottom-0 w-full left-0">
+                <div className="flex justify-between">
                     <div className="p-8">Current: {currentPlanet.name}</div>
                     <div className="p-8">
                         <button
