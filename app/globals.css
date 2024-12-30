@@ -3,57 +3,62 @@
 @tailwind utilities;
 
 * {
-  /* outline: 1px solid brown; */
+      /* outline: 1px solid brown; */
 }
 
 :root {
-  --background: #0B0C10;
-  --foreground: #F2F2F2;
-  --purple: #2C0735;
-  --dusty: #755C48;
-  --gold: #FFC857;
-  --teal: #118AB2;
-  --green: #66FF66;
-  --red: #FF4444;
-  --orange: #F45D22;
-  --blue: #A2E8FF;
-  --gray: #737373;
+      --background: #0b0c10;
+      --backgroundLight: #161820;
+      --foreground: #f2f2f2;
+      --purple: #2c0735;
+      --dusty: #755c48;
+      --gold: #ffc857;
+      --teal: #118ab2;
+      --green: #66ff66;
+      --red: #ff4444;
+      --orange: #f45d22;
+      --blue: #a2e8ff;
+      --gray: #737373;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: monospace;
-  height: 100vh;
-  text-transform: uppercase;
+      color: var(--foreground);
+      background: var(--background);
+      font-family: monospace;
+      height: 100vh;
+      text-transform: uppercase;
 }
 
 .detail-stat {
-  @apply py-2 border-b border-dashed border-gray;
+      @apply py-2 border-b border-dashed border-gray;
+}
+
+.planet-container {
+      @apply flex min-h-[50vh] w-full items-center justify-center;
 }
 
 @keyframes event {
-  0% {
-    background-color: #66FF66;
-  }
-  100% {
-    background-color: transparent;
-  }
+      0% {
+            background-color: #66ff66;
+      }
+      100% {
+            background-color: transparent;
+      }
 }
 
 @keyframes no-event {
-  0% {
-    background-color: #755C48;
-  }
-  100% {
-    background-color: transparent;
-  }
+      0% {
+            background-color: #755c48;
+      }
+      100% {
+            background-color: transparent;
+      }
 }
 
-.event-anim {
-
+.footer  {
+      @apply flex flex-col fixed bottom-0 w-full left-0;
 }
 
-.no-event-anim {
-
+.menu-item {
+      @apply p-8 hover:text-blue hover:cursor-pointer;
 }
