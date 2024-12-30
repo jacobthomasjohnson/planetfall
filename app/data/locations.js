@@ -29,7 +29,7 @@ export const locations = [
         mineralRichness: 10,
         soilQuality: 1,
         hostileLifeforms: 0,
-        populationCapacity: 0.1,
+        populationCapacity: 1,
     },
     {
         id: 2,
@@ -45,7 +45,7 @@ export const locations = [
         mineralRichness: 15,
         soilQuality: 10,
         hostileLifeforms: 0,
-        populationCapacity: 0.5,
+        populationCapacity: 5,
     },
     {
         id: 3,
@@ -77,7 +77,7 @@ export const locations = [
         mineralRichness: 25,
         soilQuality: 5,
         hostileLifeforms: 0,
-        populationCapacity: 0.2,
+        populationCapacity: 2,
     },
     {
         id: 5,
@@ -93,7 +93,7 @@ export const locations = [
         mineralRichness: 20,
         soilQuality: 5,
         hostileLifeforms: 5,
-        populationCapacity: 0.1,
+        populationCapacity: 9,
     },
     {
         id: 6,
@@ -109,7 +109,7 @@ export const locations = [
         mineralRichness: 35,
         soilQuality: 50,
         hostileLifeforms: 10,
-        populationCapacity: 2,
+        populationCapacity: 12,
     },
     {
         id: 7,
@@ -125,7 +125,7 @@ export const locations = [
         mineralRichness: 40,
         soilQuality: 55,
         hostileLifeforms: 15,
-        populationCapacity: 3,
+        populationCapacity: 38,
     },
     {
         id: 8,
@@ -141,7 +141,7 @@ export const locations = [
         mineralRichness: 50,
         soilQuality: 60,
         hostileLifeforms: 20,
-        populationCapacity: 5,
+        populationCapacity: 42,
     },
     {
         id: 9,
@@ -157,7 +157,7 @@ export const locations = [
         mineralRichness: 60,
         soilQuality: 80,
         hostileLifeforms: 5,
-        populationCapacity: 10,
+        populationCapacity: 84,
     },
     {
         id: 10,
@@ -173,7 +173,7 @@ export const locations = [
         mineralRichness: 70,
         soilQuality: 85,
         hostileLifeforms: 10,
-        populationCapacity: 12,
+        populationCapacity: 128,
     },
     {
         id: 11,
@@ -189,7 +189,7 @@ export const locations = [
         mineralRichness: 80,
         soilQuality: 90,
         hostileLifeforms: 0,
-        populationCapacity: 15,
+        populationCapacity: 480,
     },
 ];
 

@@ -36,7 +36,7 @@ export default function Game() {
                     ref={headerRef}
                     className="flex relative bg-background z-50 p-8 left-0 w-full justify-between"
                 >
-                    <div>PLANETFALL</div>
+                    <div className="relative">PLANETFALL</div>
                     <Image
                         onClick={toggleMenu}
                         className="invert"
@@ -51,11 +51,14 @@ export default function Game() {
                         top:
                             menuTop
                     }}
-                    className={`fixed p-8 transition ease-snappy z-40 left-0 w-full min-h-[50%] bg-dusty ${
+                    className={`fixed flex flex-col transition ease-snappy z-40 left-0 w-full bg-background ${
                         menuOpen ? "-translate-y-0" : "-translate-y-full"
                     }`}
                 >
-                    Menu
+                    <div className="p-8">&#9658; OPERATIONS</div>
+                    <div className="p-8">&#9658; POPULATION</div>
+                    <div className="p-8">&#9658; MINING</div>
+                    <div className="p-8">&#9658; TRAVEL</div>
                 </div>
                 <div className="flex flex-col px-8">
                     <div className="flex justify-between detail-stat">
@@ -77,9 +80,9 @@ export default function Game() {
             </div>
             <div className="flex flex-col items-center fixed bottom-0 w-full left-0">
                 <div className="p-8 flex gap-2">
-                    <button className="p-4 border rounded-xl">MINING</button>
+                    {/* <button className="p-4 border rounded-xl">MINING</button>
                     <button className="p-4 border rounded-xl">GATHERING</button>
-                    <button className="p-4 border rounded-xl">TRAVEL</button>
+                    <button className="p-4 border rounded-xl">TRAVEL</button> */}
                 </div>
                 <div className="flex">
                     <div className="p-8">Current: {currentPlanet.name}</div>
@@ -149,7 +152,7 @@ export default function Game() {
                     </div>
                     <div className="flex justify-between detail-stat">
                         <div>Population Capacity</div>
-                        <div>{currentPlanet.populationCapacity}%</div>
+                        <div>{currentPlanet.populationCapacity} BILLION</div>
                     </div>
                 </div>
             </div>
