@@ -6,6 +6,7 @@ const useGameStore = create((set, get) => ({
     locations,
 
     gameRunning: false,
+    level: 1,
     currentPlanet: locations[1],
 }));
 

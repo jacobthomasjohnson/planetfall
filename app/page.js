@@ -40,7 +40,7 @@ export default function Game() {
                     <div className="relative">PLANETFALL</div>
                     <Image
                         onClick={toggleMenu}
-                        className="invert"
+                        className="invert hover:cursor-pointer"
                         src="/menu.svg"
                         width={15}
                         height={15}

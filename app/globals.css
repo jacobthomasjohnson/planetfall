@@ -31,3 +31,29 @@ body {
 .detail-stat {
   @apply py-2 border-b border-dashed border-gray;
 }
+
+@keyframes event {
+  0% {
+    background-color: #66FF66;
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
+@keyframes no-event {
+  0% {
+    background-color: #755C48;
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
+.event-anim {
+
+}
+
+.no-event-anim {
+
+}
