@@ -1,38 +1,76 @@
-import useGameStore from "../gameStore";
+import Link from "next/link";
 
-export const Menu = ({ menuTop, menuOpen, toggleMenu }) => {
-      const currentPage = useGameStore((state) => state.currentPage);
-      const changePage = useGameStore((state) => state.changePage);
-      const onMenuLinkClick = (page) => {
-            toggleMenu();
-            changePage(page);
-      }
-      return (
-            <div
-                  style={{
-                        top: menuTop,
-                  }}
-                  className={`fixed flex flex-col transition ease-snappy z-40 left-0 w-full bg-backgroundLight ${
-                        menuOpen ? "-translate-y-0" : "-translate-y-full"
-                  }`}
-            >
-                  <div onClick={() => onMenuLinkClick("operations")} className="menu-item">
-                        &#9658; OPERATIONS
-                  </div>
-                  <div onClick={() => onMenuLinkClick("population")} className="menu-item">
-                        &#9658; POPULATION
-                  </div>
-                  <div onClick={() => onMenuLinkClick("mining")} className="menu-item">
-                        &#9658; MINING
-                  </div>
-                  <div onClick={() => onMenuLinkClick("foodgathering")} className="menu-item">
-                        &#9658; FOOD GATHERING
-                  </div>
-                  <div onClick={() => onMenuLinkClick("travel")} className="menu-item">
-                        &#9658; TRAVEL
-                  </div>
+export const Menu = ({ menuOpen, toggleMenu, ref, headerBottom }) => {
+    const onMenuLinkClick = (page) => {
+        toggleMenu();
+    };
+    return (
+        <div
+
+            className={`fixed flex flex-col transition ease-snappy z-40 left-0 w-full bg-backgroundLight ${
+                menuOpen ? "-translate-y-0" : "-translate-y-full"
+            }`}
+            style={{
+                  top: headerBottom + "px"
+            }}
+            ref={ref}
+        >
+            <div className="menu-item">
+                <Link
+                    className="menu-item-link"
+                    onClick={onMenuLinkClick}
+                    href="/population"
+                >
+                    &#9658; Population Management
+                </Link>
             </div>
-      );
+            <div className="menu-item">
+                <Link
+                    className="menu-item-link"
+                    onClick={onMenuLinkClick}
+                    href="/resources"
+                >
+                    &#9658; Resource Management
+                </Link>
+            </div>
+            <div className="menu-item">
+                <Link
+                    className="menu-item-link"
+                    onClick={onMenuLinkClick}
+                    href="/technology"
+                >
+                    &#9658; Technology & Research
+                </Link>
+            </div>
+            <div className="menu-item">
+                <Link
+                    className="menu-item-link"
+                    onClick={onMenuLinkClick}
+                    href="/log"
+                >
+                    &#9658; Event Log
+                </Link>
+            </div>
+            <div className="menu-item">
+                <Link
+                    className="menu-item-link"
+                    onClick={onMenuLinkClick}
+                    href="/stats"
+                >
+                    &#9658; Statistics
+                </Link>
+            </div>
+            <div className="menu-item">
+                <Link
+                    className="menu-item-link"
+                    onClick={onMenuLinkClick}
+                    href="/travel"
+                >
+                    &#9658; Travel
+                </Link>
+            </div>
+        </div>
+    );
 };
 
 export default Menu;

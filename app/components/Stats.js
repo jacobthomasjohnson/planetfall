@@ -1,6 +1,6 @@
 export const Stats = () => {
       return (
-            <div className="flex flex-col px-8">
+            <div className="flex flex-col px-8 relative">
                   <div className="flex justify-between detail-stat">
                         <div>SCRAPS</div>
                         <div>10000</div>

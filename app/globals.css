@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 * {
-      /* outline: 1px solid brown; */
       user-select: none;
+
 }
 
 :root {
@@ -28,6 +28,7 @@ body {
       font-family: monospace;
       height: 100vh;
       text-transform: uppercase;
+      overflow: hidden;
 }
 
 .detail-stat {
@@ -35,7 +36,7 @@ body {
 }
 
 .planet-container {
-      @apply flex min-h-[50vh] w-full items-center justify-center;
+      @apply flex min-h-[200px] w-full items-center justify-center;
 }
 
 @keyframes event {
@@ -62,4 +63,8 @@ body {
 
 .menu-item {
       @apply p-8 hover:text-blue hover:cursor-pointer;
+}
+
+.menu-item-link {
+      @apply block w-full h-full;
 }

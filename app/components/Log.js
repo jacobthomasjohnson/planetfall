@@ -13,7 +13,7 @@ export const Log = () => {
             logContainer.current.prepend(div);
         }
     }, [logs]);
-    return <div className="px-8 flex flex-col" ref={logContainer}></div>;
+    return <div className="px-8 flex flex-col border" ref={logContainer}></div>;
 };
 
 export default Log;
